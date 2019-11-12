@@ -14,8 +14,10 @@ public class Kruskal {
             throw new IllegalArgumentException();
 
         int minSum = 0;
+        //标记哪些点已经到访过
         int[][] visited = new int[graph.length][graph.length];
 
+        //用来表示父子级的关系，验证是否存在环
         int[] nodeHierarchy = new int[graph.length];
         for(int i=0; i<nodeHierarchy.length; i++){
             nodeHierarchy[i] = i;
@@ -38,6 +40,7 @@ public class Kruskal {
             }
             visited[iIndex][jIndex] = 1;
 
+            //判断父节点是否相同，确定是否构成了环
             if(findFather(nodeHierarchy, iIndex) != findFather(nodeHierarchy, jIndex)){
                 System.out.println(n + " Round min value path: " + minVal + " from " + iIndex + " to " + jIndex);
                 minSum += graph[iIndex][jIndex];
@@ -54,7 +57,8 @@ public class Kruskal {
 
 
     }
-    
+
+    //递归查找父节点
     private static int findFather(int[] nodeHierarchy, int idx){
 
         if(nodeHierarchy[idx] == idx)
@@ -64,6 +68,7 @@ public class Kruskal {
 
     }
 
+    //递归更新父节点
     private static void updateHierarchy(int[] nodeHierarchy, int from, int to){
         if(nodeHierarchy[from] != from)
             updateHierarchy(nodeHierarchy, nodeHierarchy[from], from);

@@ -18,11 +18,15 @@ public class DijkstraTest {
                 {Integer.MAX_VALUE, 4, Integer.MAX_VALUE, 7, 0, 9},
                 {Integer.MAX_VALUE, Integer.MAX_VALUE, 7, Integer.MAX_VALUE, 9, 0}
         };
-
         System.out.println(Arrays.toString(getShortestPath(graph, 0)));
+        System.out.println(Arrays.toString(getShortestPath(graph, 1)));
+        System.out.println(Arrays.toString(getShortestPath(graph, 2)));
+        System.out.println(Arrays.toString(getShortestPath(graph, 3)));
+        System.out.println(Arrays.toString(getShortestPath(graph, 4)));
+        System.out.println(Arrays.toString(getShortestPath(graph, 5)));
     }
 
     protected static int[] getShortestPath(int[][]graph, int source){
-        return Dijkstra.getShortestPath(graph, 0);
+        return Dijkstra.getShortestPath(graph, source);
     }
 }

@@ -58,19 +58,23 @@ public class Dijkstra {
 //        String[] route = new String[n];
 
 
+        //保存结果集
         int[] ret = new int[graph[source].length];
+        //保存已确定最短路径的点
         int[] visited = new int[graph[source].length];
+
+        //初始化数据
         Arrays.fill(visited, 0);
         Arrays.fill(ret, Integer.MAX_VALUE);
-
         ret[source] = 0;
-        visited[source] = 1;
 
-//        int idx = source;
+        //进行n次筛选
         for(int i=0; i<n; i++){
+            //找出结果集中未visited结果中数据最小的点，为该轮确定的最短路径
             int minValueIndex = findMinValue(ret, visited);
             visited[minValueIndex] = 1;
 
+            //更新通过该点是否有新的最短路径生成
             int[] line = graph[minValueIndex];
             for(int j=0; j<line.length; j++){
                 if(visited[j] == 0 &&
@@ -88,7 +92,7 @@ public class Dijkstra {
     }
 
 
-    public static int findMinValue(int[] source, int[] visited){
+    private static int findMinValue(int[] source, int[] visited){
         int ret = 0;
         int minVal = Integer.MAX_VALUE;
         for(int i=0; i<source.length; i++){
